@@ -18,7 +18,6 @@ public class SumaListasDigitosTest {
 				Arrays.asList(1,2,3),
 				Arrays.asList(4,5,6)
 		);
-		
 		assertEquals(Arrays.asList(5,7,9), resultado);
 	}
 	
