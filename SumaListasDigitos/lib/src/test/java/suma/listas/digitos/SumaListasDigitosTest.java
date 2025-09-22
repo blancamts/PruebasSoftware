@@ -78,10 +78,12 @@ public class SumaListasDigitosTest {
 	
 	@Test
 	public void testListasNulas() {
-		
-		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-	        SumaListasDigitos.sumaVariasListasDeDigitos(null, Arrays.asList(1,2));
-	    });
+		IllegalArgumentException exception = null;
+		try {
+			SumaListasDigitos.sumaVariasListasDeDigitos(null, Arrays.asList(1,2));	
+		}catch (IllegalArgumentException e) {
+			exception = e;
+		}
 
 	    assertEquals("La lista en la posición 0 es nula", exception.getMessage());
 	}
@@ -91,19 +93,24 @@ public class SumaListasDigitosTest {
 		List<Integer> list1 = Arrays.asList(0,-1, 1);
 		List<Integer> list2 = Arrays.asList(0,0,10,2);
 		
-		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-	        SumaListasDigitos.sumaDosListasDeDigitos(list1, list2);
-	    });
+		IllegalArgumentException exception = null;
+		try {
+			 SumaListasDigitos.sumaDosListasDeDigitos(list1, list2);
+		}catch (IllegalArgumentException e) {
+			exception = e;
+		}
 
 	    assertEquals("Sólo se permiten dígitos entre 0 y 9", exception.getMessage());
 	}
 	
 	@Test
 	public void testListasVacias() {
-		
-		Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-	        SumaListasDigitos.sumaVariasListasDeDigitos();
-	    });
+		IllegalArgumentException exception = null;
+		try {
+			SumaListasDigitos.sumaVariasListasDeDigitos();
+		}catch (IllegalArgumentException e) {
+			exception = e;
+		}
 
 	    assertEquals("Debe proporcionar al menos una lista", exception.getMessage());
 	}	
