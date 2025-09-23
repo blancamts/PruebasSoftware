@@ -36,7 +36,8 @@ public class SumaListasDigitos {
             j--;
         }
         Collections.reverse(out);
-        return out;
+        //MODIFICADO
+        return normaliza(out);
     }
 
     /**

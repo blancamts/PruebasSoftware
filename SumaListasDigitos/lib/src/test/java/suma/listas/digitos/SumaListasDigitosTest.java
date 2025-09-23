@@ -1,6 +1,7 @@
 package suma.listas.digitos;
 import java.util.List;
 import java.io.IOException;
+import java.math.BigInteger;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -11,6 +12,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
@@ -122,34 +124,77 @@ public class SumaListasDigitosTest {
 	}	
 	
 	
-	static Stream<Arguments> txtCaminosProvider() throws IOException {
+	static Stream<Arguments> txtDosListasCaminoProvider() throws IOException {
 	    Path path = Paths.get("suma_dos_listas.txt");
 	    return Files.lines(path)
+	            .filter(line -> !line.startsWith("#"))
 	            .map(line -> line.split(";"))
 	            .map(cols -> {
-	                List<Integer> list1 = Arrays.stream(cols[0].replaceAll("[\\[\\]\\s]", "").split(",")).map(Integer::parseInt).toList();
-	                List<Integer> list2 = Arrays.stream(cols[1].replaceAll("[\\[\\]\\s]", "").split(",")).map(Integer::parseInt).toList();
-	                return Arguments.of(list1, list2);
+	                List<Integer> lista1 = Arrays.stream(cols[0].replaceAll("[\\[\\]\\s]", "").split(",")).map(Integer::parseInt).toList();
+	                List<Integer> lista2 = Arrays.stream(cols[1].replaceAll("[\\[\\]\\s]", "").split(",")).map(Integer::parseInt).toList();
+	                return Arguments.of(lista1, lista2);
 	            });
 	}
 
 	
 	@ParameterizedTest(name = "{index} => {0} + {1}")
-	@MethodSource("txtCaminosProvider")
-	public void testSumaDosListasDeDigitosDDT(List<Integer> list1, List<Integer> list2) {
-	    List<Integer> resultado = SumaListasDigitos.sumaDosListasDeDigitos(list1, list2);
-	    
+	@MethodSource("txtDosListasCaminoProvider")
+	public void testSumaDosListasDeDigitosDDT(List<Integer> lista1, List<Integer> lista2) {
+		
+		 List<Integer> resultado1 = SumaListasDigitos.sumaDosListasDeDigitos(lista1, lista2);
 
-	    int numero1 = Integer.parseInt(list1.stream().map(String::valueOf).reduce("", String::concat));
-	    int numero2 = Integer.parseInt(list2.stream().map(String::valueOf).reduce("", String::concat));
-	    int suma = numero1 + numero2;
-	    
-	    List<Integer> esperado = String.valueOf(suma)
-	                                  .chars()
-	                                  .mapToObj(c -> c - '0')
-	                                  .toList();
-	    
-	    assertEquals(esperado, resultado);
+		 BigInteger numero1 = new BigInteger(lista1.toString().replaceAll("[\\[\\], ]", ""));
+		 BigInteger numero2 = new BigInteger(lista2.toString().replaceAll("[\\[\\], ]", ""));
+		 
+		 BigInteger suma = numero1.add(numero2);
+
+		 List<Integer> resultado2 = new ArrayList<>();
+		 for (char c : suma.toString().toCharArray()) {
+		     resultado2.add(c - '0');
+		 }
+
+		    assertEquals(resultado1, resultado2);
 	}
+	
+	static Stream<Arguments> txtVariasListasCaminoProvider() throws IOException {
+	    Path path = Paths.get("suma_varias_listas.txt");
+	    return Files.lines(path)
+	            .filter(line -> !line.startsWith("#"))
+	            .map(line -> line.split(";"))
+	            .map(cols -> {
+	                List<List<Integer>> listas = Arrays.stream(cols).map(s -> Arrays.stream(s.replaceAll("[\\[\\]\\s]", "").split(",")).filter(str -> !str.isEmpty()).map(Integer::parseInt).toList())
+	                        .toList();
+	                
+	                
+	                return Arguments.of(listas);
+	            });
+	}
+	
+	@ParameterizedTest(name = "{index} => {0}")
+	@MethodSource("txtVariasListasCaminoProvider")
+	public void testSumaVariasListasDeDigitosDDT(List<List<Integer>> listas) {
+	    
+		
+		List<Integer> resultado1 = SumaListasDigitos.sumaVariasListasDeDigitos(listas.toArray(new List[0]));
+
+		BigInteger sumaTotal = BigInteger.ZERO;
+		for (List<Integer> lista : listas) {
+			BigInteger numero = new BigInteger(lista.toString().replaceAll("[\\[\\], ]", ""));
+			sumaTotal = sumaTotal.add(numero);
+		}
+		 
+		List<Integer> resultado2 = new ArrayList<>();
+		for (char c : sumaTotal.toString().toCharArray()) {
+		    resultado2.add(c - '0');
+		}
+
+		    assertEquals(resultado1, resultado2);
+	}
+
+
+	
+	
+	
+	
 
 }
