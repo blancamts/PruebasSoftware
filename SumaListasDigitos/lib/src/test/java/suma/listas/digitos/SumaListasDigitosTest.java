@@ -1,15 +1,20 @@
 package suma.listas.digitos;
 import java.util.List;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
 
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
-/**
- * Pruebas JUnit 5 para la clase SumaListaDigitos.
- */
+
 public class SumaListasDigitosTest {
 	
 	@Test
@@ -115,4 +120,36 @@ public class SumaListasDigitosTest {
 
 	    assertEquals("Debe proporcionar al menos una lista", exception.getMessage());
 	}	
+	
+	
+	static Stream<Arguments> txtCaminosProvider() throws IOException {
+	    Path path = Paths.get("suma_dos_listas.txt");
+	    return Files.lines(path)
+	            .map(line -> line.split(";"))
+	            .map(cols -> {
+	                List<Integer> list1 = Arrays.stream(cols[0].replaceAll("[\\[\\]\\s]", "").split(",")).map(Integer::parseInt).toList();
+	                List<Integer> list2 = Arrays.stream(cols[1].replaceAll("[\\[\\]\\s]", "").split(",")).map(Integer::parseInt).toList();
+	                return Arguments.of(list1, list2);
+	            });
+	}
+
+	
+	@ParameterizedTest(name = "{index} => {0} + {1}")
+	@MethodSource("txtCaminosProvider")
+	public void testSumaDosListasDeDigitosDDT(List<Integer> list1, List<Integer> list2) {
+	    List<Integer> resultado = SumaListasDigitos.sumaDosListasDeDigitos(list1, list2);
+	    
+
+	    int numero1 = Integer.parseInt(list1.stream().map(String::valueOf).reduce("", String::concat));
+	    int numero2 = Integer.parseInt(list2.stream().map(String::valueOf).reduce("", String::concat));
+	    int suma = numero1 + numero2;
+	    
+	    List<Integer> esperado = String.valueOf(suma)
+	                                  .chars()
+	                                  .mapToObj(c -> c - '0')
+	                                  .toList();
+	    
+	    assertEquals(esperado, resultado);
+	}
+
 }

@@ -20,7 +20,6 @@ INDEX VERSION 1.134+/home/blanca/Escritorio/cuarto/pruebas_software/PruebasSoftw
 3752318740.index
 441461371.index
 2963622983.index
-2405139114.index
 336986291.index
 1173561589.index
 251323085.index
