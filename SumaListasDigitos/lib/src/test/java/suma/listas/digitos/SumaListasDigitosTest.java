@@ -1,6 +1,8 @@
 package suma.listas.digitos;
 import java.util.List;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.math.BigInteger;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,6 +13,8 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,6 +67,22 @@ public class SumaListasDigitosTest {
 	}
 	
 	@Test
+	public void testSumaVariasListas2() {
+		
+		List<List<Integer>> listas = List.of(
+				Arrays.asList(9,9,9),
+				Arrays.asList(1),
+				Arrays.asList(0,0,1,2),
+				Arrays.asList(4,9)
+		);
+		List<Integer> resultado = SumaListasDigitos.sumaVariasListasDeDigitos(
+				listas
+		);
+		
+		assertEquals(Arrays.asList(1,0,6,1), resultado);
+	}
+	
+	@Test
 	public void testListaCeros() {
 		List<Integer> resultado = SumaListasDigitos.sumaVariasListasDeDigitos(
 				Arrays.asList(0,0,0),
@@ -85,13 +105,11 @@ public class SumaListasDigitosTest {
 	}
 	
 	@Test
-	public void testListasNulas() {
-		IllegalArgumentException exception = null;
-		try {
-			SumaListasDigitos.sumaVariasListasDeDigitos(null, Arrays.asList(1,2));	
-		}catch (IllegalArgumentException e) {
-			exception = e;
-		}
+	public void testListaNula() {
+	    IllegalArgumentException exception = assertThrows(
+	        IllegalArgumentException.class,
+	        () -> SumaListasDigitos.sumaVariasListasDeDigitos(null, Arrays.asList(1,2), Arrays.asList(3,2))
+	    );
 
 	    assertEquals("La lista en la posición 0 es nula", exception.getMessage());
 	}
@@ -101,28 +119,33 @@ public class SumaListasDigitosTest {
 		List<Integer> list1 = Arrays.asList(0,-1, 1);
 		List<Integer> list2 = Arrays.asList(0,0,10,2);
 		
-		IllegalArgumentException exception = null;
-		try {
-			 SumaListasDigitos.sumaDosListasDeDigitos(list1, list2);
-		}catch (IllegalArgumentException e) {
-			exception = e;
-		}
+		IllegalArgumentException exception = assertThrows(
+				IllegalArgumentException.class, 
+				() -> SumaListasDigitos.sumaDosListasDeDigitos(list1, list2)
+		);
 
 	    assertEquals("Sólo se permiten dígitos entre 0 y 9", exception.getMessage());
 	}
 	
 	@Test
 	public void testListasVacias() {
-		IllegalArgumentException exception = null;
-		try {
-			SumaListasDigitos.sumaVariasListasDeDigitos();
-		}catch (IllegalArgumentException e) {
-			exception = e;
-		}
+		IllegalArgumentException exception = assertThrows(
+				IllegalArgumentException.class, 
+				() -> SumaListasDigitos.sumaVariasListasDeDigitos()
+		);
 
 	    assertEquals("Debe proporcionar al menos una lista", exception.getMessage());
-	}	
+	}
 	
+	@Test
+	public void testAmbasListasNulas() {
+		IllegalArgumentException exception = assertThrows(
+				IllegalArgumentException.class, 
+				() -> SumaListasDigitos.sumaDosListasDeDigitos(null, null)
+		);
+
+	    assertEquals("Las listas no pueden ser nulas", exception.getMessage());
+	}	
 	
 	static Stream<Arguments> txtDosListasCaminoProvider() throws IOException {
 	    Path path = Paths.get("suma_dos_listas.txt");
@@ -135,6 +158,25 @@ public class SumaListasDigitosTest {
 	                return Arguments.of(lista1, lista2);
 	            });
 	}
+	
+	@Test
+	void testMain() {
+	    ByteArrayOutputStream salidaOriginal = new ByteArrayOutputStream();
+	    PrintStream salidaMain = System.out;
+	    System.setOut(new PrintStream(salidaOriginal));
+
+	    try {
+	        SumaListasDigitos.main(new String[]{});
+
+	        String salida = salidaOriginal.toString();
+	        assertTrue(salida.contains("Suma de 1 lista"));
+	        assertTrue(salida.contains("Suma de 2 listas"));
+	        assertTrue(salida.contains("Suma de n listas"));
+	    } finally {
+	        System.setOut(salidaMain);
+	    }
+	}
+
 
 	
 	@ParameterizedTest(name = "{index} => {0} + {1}")
