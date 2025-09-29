@@ -13,4 +13,12 @@ public class ProductoTest {
 		double resultado = producto.getProducto(2.0, 3.0);
 		assertEquals(6, resultado, "Al multiplicar 2 por 3 debería dar 6");
 	}
+	
+	@Test
+	public void testMultiplica() 
+	{
+		Producto producto = new Producto(2.0);
+		double resultado = producto.multiplica(3.0);
+		assertEquals(6, resultado, "Al multiplicar 2 por 3 debería dar 6");
+	}
 }
