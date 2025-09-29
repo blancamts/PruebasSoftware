@@ -11,14 +11,13 @@ import java.util.stream.Stream;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThrows;
 import static org.junit.Assert.assertTrue;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
+import static org.mockito.Mockito.*;
 
 
 public class SumaListasDigitosTest {
@@ -232,6 +231,10 @@ public class SumaListasDigitosTest {
 
 		    assertEquals(resultado1, resultado2);
 	}
+	
+	
+	
+	}
 
 
 	
@@ -239,4 +242,3 @@ public class SumaListasDigitosTest {
 	
 	
 
-}
