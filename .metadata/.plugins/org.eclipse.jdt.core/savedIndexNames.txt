@@ -9,7 +9,6 @@ INDEX VERSION 1.134+/home/victoria/Documentos/GitHub/PruebasSoftware/.metadata/.
 1562512655.index
 1570613858.index
 1150175234.index
-2405139114.index
 3807555084.index
 165986152.index
 1525414757.index

@@ -17,7 +17,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
-import static org.mockito.Mockito.*;
 
 
 public class SumaListasDigitosTest {
@@ -216,7 +215,7 @@ public class SumaListasDigitosTest {
 	public void testSumaVariasListasDeDigitosDDT(List<List<Integer>> listas) {
 	    
 		
-		List<Integer> resultado1 = SumaListasDigitos.sumaVariasListasDeDigitos(listas.toArray(new List[0]));
+		List<Integer> resultado1 = SumaListasDigitos.sumaVariasListasDeDigitos(listas);
 
 		BigInteger sumaTotal = BigInteger.ZERO;
 		for (List<Integer> lista : listas) {
