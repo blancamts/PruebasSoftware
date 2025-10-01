@@ -24,7 +24,7 @@ public class SumaListasDigitosTestMockito {
 		        assertEquals(List.of(4, 4, 4), resultado);
 		        // Verificamos que no se han modificado las listas originales la importancia de este test es
 		        // garantizar que los métodos no muten los parámetros recibidos, ya que las entradas
-		        //deben considerarse inmutables para evitar errores inesperados
+		        // deben considerarse inmutables para evitar errores inesperados
 		        verify(lista1, never()).add(any());
 		        verify(lista1, never()).remove(any());
 		        verify(lista2, never()).add(any());

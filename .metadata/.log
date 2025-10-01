@@ -1387,3 +1387,9 @@ Command-line arguments:  -os linux -ws gtk -arch x86_64 -product org.eclipse.epp
 
 !ENTRY org.eclipse.lsp4e 1 0 2025-10-01 12:34:07.271
 !MESSAGE [Info]	[streamChoices] solution 0 returned. finish reason: [stop]
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-10-01 12:37:32.065
+!MESSAGE [Info] Document is null for editor: SumaListasDigitosTestMockito.java
+
+!ENTRY com.microsoft.copilot.eclipse 1 0 2025-10-01 12:37:32.066
+!MESSAGE [Info] Completion handler is refreshed for the document: file:///home/blanca/Escritorio/cuarto/pruebas_software/PruebasSoftware/SumaListasDigitos/lib/src/test/java/suma/listas/digitos/SumaListasDigitosTestMockito.java
