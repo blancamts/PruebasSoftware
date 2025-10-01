@@ -72,7 +72,7 @@ public class SumaListasDigitos {
     	return sumaVariasListasDeDigitos(arrListas);
     }
     
-    private static List<Integer> normaliza(List<Integer> out) {
+    static List<Integer> normaliza(List<Integer> out) {
     	  int i = 0;
     	  while (i < out.size() - 1 && out.get(i) == 0) i++;
     	  return i == 0 ? out : out.subList(i, out.size());
