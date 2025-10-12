@@ -6,6 +6,13 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * @author Blanca Matas y Victoria Victorero
+ * @version 1.0
+ * 
+ * Clase que proporciona métodos para sumar números representados como listas de dígitos.
+ * Cada dígito de un número se representa en orden de más significativo a menos significativo.
+ */
 public class SumaListasDigitos {
 
     /**

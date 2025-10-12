@@ -5,7 +5,17 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 
-
+/**
+ * Clase de pruebas unitarias usando JUnit 5 y Mockito para la clase {@link SumaListasDigitos}.
+ * 
+ * @author Blanca Matas y Victoria Victorero
+ * @version 1.0
+ * 
+ * Esta clase verifica:
+ * - Que las listas de entrada no se muten.
+ * - Que se lancen excepciones si las listas contienen valores inválidos.
+ * - Que se invoquen métodos esenciales de las listas como size() y get().
+ */
 public class SumaListasDigitosTestMockito {
 	
 		  

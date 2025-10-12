@@ -8,6 +8,14 @@ import static org.junit.Assert.assertEquals;
 import java.util.*;
 import java.util.stream.Collectors;
 
+
+/**
+ * @author Blanca Matas y Victoria Victorero
+ * @version 1.0
+ * 
+ * Clase de pruebas JUnit/Jqwik para verificar propiedades de la suma
+ * de listas de dígitos.
+ */
 public class SumaListasDigitosPropertyTest {
 
     @Provide

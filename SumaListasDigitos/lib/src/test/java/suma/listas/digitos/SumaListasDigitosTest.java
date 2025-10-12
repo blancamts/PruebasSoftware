@@ -18,7 +18,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
-
+/**
+ * @author Blanca Matas y Victoria Victorero
+ * @version 1.0
+ * 
+ * Clase de pruebas para verificar las funciones de 
+ * SumaListasDigitos
+ */
 public class SumaListasDigitosTest {
 	
 	@Test
