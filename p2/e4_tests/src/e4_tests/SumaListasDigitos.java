@@ -1,4 +1,4 @@
-package suma.listas.digitos;
+package e4_tests;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,0 +1,17 @@
+#L1_longitud,L2_longitud,L1_valor1,L1_valor2,L2_valor1,L2_valor2
+0,0,null,null,null,null
+0,1,null,null,-1,null
+0,2,null,null,8,0
+1,0,-1,null,null,null
+1,1,8,null,8,null
+1,2,-1,null,-1,10
+2,0,8,0,null,null
+2,1,-1,10,8,null
+2,2,8,10,-1,0
+1,1,null,0,8,null
+2,2,-1,0,-1,0
+1,0,null,10,null,null
+2,1,8,0,null,10
+1,1,null,0,null,0
+1,2,null,10,8,10
+0,2,null,null,8,10
