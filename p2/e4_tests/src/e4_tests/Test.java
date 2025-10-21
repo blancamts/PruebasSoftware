@@ -21,9 +21,10 @@ import org.junit.jupiter.params.provider.Arguments;
 public class Test {
 
 	
-    static Stream<Arguments> txt_ACTS_invalid_Provider() throws IOException {
+    static Stream<Arguments> txt_DDT_Provider() throws IOException {
     	
-        Path path = Paths.get("e2_valores_invalidos.txt");
+    	//Intercambiar la ruta del fichero por la de valores_invalidos.txt para probar los valores invalidos
+        Path path = Paths.get("valores_validos.txt");
         return Files.lines(path)
                 .filter(line -> !line.startsWith("#") && !line.trim().isEmpty()).map(line -> line.split(",")) 
                 .map(cols -> {
@@ -42,7 +43,6 @@ public class Test {
                 });
     }
 
-   
     
     private static List<Integer> construirLista(int longitud, String val1, String val2) {
         
@@ -61,7 +61,7 @@ public class Test {
 
     
     @ParameterizedTest(name = "{index} => lista1={0}, lista2={1}")
-    @MethodSource("txt_ACTS_invalid_Provider")
+    @MethodSource("txt_DDT_Provider")
     void testSumaDosListasDeDigitosDDT(List<Integer> lista1, List<Integer> lista2) {
         
         List<Integer> resultado = SumaListasDigitos.sumaDosListasDeDigitos(lista1, lista2);
