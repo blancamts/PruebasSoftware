@@ -81,14 +81,42 @@ public class Apartado1 {
             String url = BASE + categoria;
             HttpResponse<String> response = getWithRetry(url, 2);
 
-            // Si la categoría es válida, debe devolver 200
-            assertEquals(200, response.statusCode(), "Categoría inválida: " + categoria);
+            assertEquals(200, response.statusCode());
+            
+            Optional<String> valor = extractValueField(response.body());
+            assertTrue(valor.isPresent());
+            assertFalse(valor.get().isBlank());
         }
     }
 
 
     /* --- Categorías inválidas --- */
+    @Test
+    public void testCategoriasInvalidas() throws IOException, InterruptedException{
+    	List<String> categoriasValidas = Arrays.asList(
+                "noesunacategoria", "xpto", "políticass", "hist", "mus", "film"
+            );
+
+            for (String categoria : categoriasValidas) {
+                String url = BASE + categoria;
+                HttpResponse<String> response = getWithRetry(url, 2);
+
+                assertEquals(404, response.statusCode());
+            }    	
+    }
 
     /* --- OPCIONAL: comprobación de integridad sin categoría (el comportamiento documentado de la API es código 200 junto a chiste aleatorio). --- */
+    @Test
+    public void testSinCategoria() throws IOException, InterruptedException{
+    	String NewBASE = "https://api.chucknorris.io/jokes/random";
+    	String url = NewBASE;
+        HttpResponse<String> response = getWithRetry(url, 2);
+
+        assertEquals(200, response.statusCode());
+        
+        Optional<String> valor = extractValueField(response.body());
+        assertTrue(valor.isPresent());
+        assertFalse(valor.get().isBlank());
+    }
 
 }
