@@ -17,7 +17,7 @@ public class WebTesting {
 	
 	public static void initSystemProperties() {
 		/* Sustituye este path por el tuyo */
-		String chromePath = Paths.get("C:/Drivers/ChromeDriver/chromedriver.exe").toString();
+		String chromePath = Paths.get("/home/victoria/Drivers/ChromeDriver/chromedriver").toString();
 		System.out.println(chromePath);
 				
 		// Chrome Driver
