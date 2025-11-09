@@ -9,6 +9,8 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 import java.time.Duration;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -67,6 +69,23 @@ public class Apartado1 {
     }
 
     /* --- Categorias válidas --- */
+    @Test
+    public void testCategoriasValidas() throws IOException, InterruptedException{
+        List<String> categoriasValidas = Arrays.asList(
+            "animal", "career", "celebrity", "dev", "explicit", "fashion",
+            "food", "history", "money", "movie", "music", "political",
+            "religion", "science", "sport", "travel"
+        );
+
+        for (String categoria : categoriasValidas) {
+            String url = BASE + categoria;
+            HttpResponse<String> response = getWithRetry(url, 2);
+
+            // Si la categoría es válida, debe devolver 200
+            assertEquals(200, response.statusCode(), "Categoría inválida: " + categoria);
+        }
+    }
+
 
     /* --- Categorías inválidas --- */
 
