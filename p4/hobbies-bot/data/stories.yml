@@ -1,0 +1,15 @@
+version: "3.1"
+
+stories:
+- story: happy path hobbies
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - action: utter_ask_hobbies
+    - intent: tell_hobbies
+    - action: utter_react_hobbies
+    - action: utter_ask_since_when
+    - intent: inform
+    - action: utter_end_conversation
+    
+

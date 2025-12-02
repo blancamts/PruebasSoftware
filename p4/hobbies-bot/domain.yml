@@ -1,0 +1,39 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - tell_hobbies
+  - tell_negative_hobbies
+  - concerning_hobbies    # ⬅️ NUEVO
+  - inform
+  - nlu_fallback
+  - neutral_response
+
+responses:
+  utter_greet:
+    - text: "¡Hola! Soy tu bot de aficiones."
+  utter_ask_hobbies:
+    - text: "¿Qué te gusta hacer en tu tiempo libre?"
+  utter_react_hobbies:
+    - text: "¡Qué bien, eso suena genial!"
+  utter_react_negative_hobbies:
+    - text: "Vaya, parece que ahora mismo no disfrutas mucho de tus aficiones. A veces pasa. ¿Hay algo que te gustaría retomar o empezar a hacer?"
+  utter_concerning_hobbies:
+    - text: "Lo que comentas es preocupante. No está bien hacer eso. Siempre puedes hablar con alguien de confianza o con un profesional que pueda ayudarte."
+  utter_ask_since_when:
+    - text: "¿Desde hace cuánto tiempo lo haces?"
+  utter_end_conversation:
+    - text: "Gracias por compartir tus aficiones conmigo. ¡Ha sido un placer hablar contigo!"
+  utter_goodbye:
+    - text: "¡Hasta luego! 👋"
+  utter_ask_rephrase:
+    - text: "Lo siento, no te he entendido bien. ¿Puedes decirlo de otra forma, por ejemplo hablándome de tus aficiones?"
+  utter_end_conversation_neutro:
+  - text: "No pasa nada por no tener hobbies todavía, vuelve a hablar conmigo cuando hagas algo que te interese"
+
+
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

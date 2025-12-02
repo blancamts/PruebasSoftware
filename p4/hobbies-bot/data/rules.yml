@@ -1,0 +1,51 @@
+version: "3.1"
+
+rules:
+  - rule: Greet and ask for hobbies
+    steps:
+      - intent: greet
+      - action: utter_greet
+      - action: utter_ask_hobbies
+
+  - rule: React to hobbies and ask since when
+    steps:
+      - intent: tell_hobbies
+      - action: utter_react_hobbies
+      - action: utter_ask_since_when
+
+  - rule: React to negative hobbies
+    steps:
+      - intent: tell_negative_hobbies
+      - action: utter_react_negative_hobbies
+
+  - rule: React to concerning / harmful hobbies
+    steps:
+      - intent: concerning_hobbies
+      - action: utter_concerning_hobbies
+
+  - rule: End conversation after info
+    steps:
+      - intent: inform
+      - action: utter_end_conversation
+
+  - rule: Say goodbye
+    steps:
+      - intent: goodbye
+      - action: utter_goodbye
+
+  - rule: Fallback por defecto
+    steps:
+      - intent: nlu_fallback
+      - action: utter_ask_rephrase
+      
+  - rule: Neutral Response
+    steps:
+      - intent: neutral_response
+      - action: utter_end_conversation_neutro
+      
+      
+      
+      
+   
+      
+

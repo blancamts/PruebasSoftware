@@ -1,0 +1,90 @@
+version: "3.1"
+nlu:
+- intent: greet
+  examples: |
+    - hola
+    - buenas
+    - qué tal
+    - hey
+    - muy buenas
+    - buenos días
+    - buenas tardes
+    - buenas noches
+    - como estas
+    
+
+- intent: goodbye
+  examples: |
+    - muchas gracias
+    - muchas gracias a ti
+    - gracias
+    - adiós
+    - hasta luego
+    - nos vemos
+    - hablamos luego
+    - que tengas un buen dia
+    - chao
+    - hasta pronto
+
+- intent: tell_hobbies
+  examples: |
+    - me gusta leer
+    - me gusta salir con mi pareja
+    - me encanta practicar deporte
+    - suelo tocar la guitarra
+    - me gusta jugar a videojuegos
+    - me gusta pasear y jugar con mi mascota
+    - me gusta pasear a mi perro
+    - me gusta jugar con mi gato
+
+- intent: tell_negative_hobbies
+  examples: |
+    - no tengo aficiones
+    - no me gusta hacer nada
+    - no disfruto de ningún hobby
+    - no tengo tiempo para aficiones
+    - no me interesa nada en mi tiempo libre
+
+- intent: concerning_hobbies 
+  examples: |
+    - me gusta hacer daño a la gente
+    - disfruto haciendo daño a otras personas
+    - me gusta hacer daño a los demás
+    - me encanta dañar a otras personas
+    - me encanta pegar a la gente
+    - me gusta pegar a otras personas
+    - disfruto molestando a los demás
+    - me encanta molestar a los demás
+    - me gusta molestar a otras personas
+    - disfruto haciendo sufrir a los demás
+    - me encanta hacer sufrir a otras personas
+    - me gusta hacer sufrir a los demás
+    - disfruto con el maltrato animal
+    - me gusta el maltrato animal
+
+- intent: inform
+  examples: |
+    - desde hace dos años
+    - desde pequeño
+    - hace mucho tiempo que lo hago
+    - empecé el año pasado
+    - hace unas semanas que empecé
+    - no llevo mucho tiempo
+    - llevo toda la vida
+    - es mi primera semana
+    - no lo recuerdo
+    
+- intent: neutral_response
+  examples: |
+    - no se
+    - nada especial
+    - no estoy seguro
+    - no sabría decirte
+    - no se me ocurre
+    - ni idea
+    - no tengo
+    - nose
+
+    
+    
+
